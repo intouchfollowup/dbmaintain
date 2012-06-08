@@ -26,7 +26,7 @@ import java.util.Set;
  */
 public class IncludeExcludeQualifierEvaluator implements QualifierEvaluator {
 
-    public static final Qualifier UNQUALIFIED = new Qualifier("<unqualified>");
+    public static final Qualifier UNQUALIFIED = new Qualifier("[unqualified]");
     ;
 
     private final Set<Qualifier> includedQualifiers;
