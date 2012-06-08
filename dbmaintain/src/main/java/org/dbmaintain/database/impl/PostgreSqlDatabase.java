@@ -147,6 +147,17 @@ public class PostgreSqlDatabase extends Database {
         getSQLHandler().execute("drop trigger " + triggerName + " cascade", getDataSource());
     }
 
+	/**
+	 * Removes the table with the given name from the given schema.
+	 * Note: the table name is surrounded with quotes, making it case-sensitive.
+	 *
+	 * @param schemaName The schema, not null
+	 * @param tableName  The table to drop (case-sensitive), not null
+	 */
+	public void dropTable(String schemaName, String tableName) {
+		getSQLHandler().execute("drop table if exists " + qualified(schemaName, tableName) + (supportsCascade() ? " cascade" : ""), getDataSource());
+	}
+
     /**
      * Retrieves the names of all user-defined types in the database schema.
      *
@@ -163,7 +174,6 @@ public class PostgreSqlDatabase extends Database {
 	        "AND 		n.nspname = '" + schemaName + "'";
         return getSQLHandler().getItemsAsStringSet(sql, getDataSource());
     }
-
 
     /**
      * Disables all referential constraints (e.g. foreign keys) on all table in the schema
