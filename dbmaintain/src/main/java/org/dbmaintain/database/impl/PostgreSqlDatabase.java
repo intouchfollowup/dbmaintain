@@ -216,7 +216,8 @@ public class PostgreSqlDatabase extends Database {
                 // Do not remove PK constraints
                 continue;
             }
-            sqlHandler.execute("alter table " + qualified(schemaName, tableName) + " alter column " + notNullColumnName + " drop not null", getDataSource());
+			sqlHandler.execute("alter table " + qualified(schemaName, tableName) + " alter column " + quoted(notNullColumnName) + " drop not null", getDataSource());
+
         }
     }
 
