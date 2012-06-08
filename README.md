@@ -1,6 +1,7 @@
 This is a Git mirror of http://www.dbmaintain.org/
 
 Used svn2git (https://github.com/nirvdrum/svn2git) to mirror it. The exact command
+
     svn2git https://dbmaintain.svn.sourceforge.net/svnroot/dbmaintain/ -v --trunk trunk --tags tags/releases --nobranches
 
 The 'intouch' branch is dbmaintain 2.4 with the following commits 
