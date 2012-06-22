@@ -80,8 +80,12 @@
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <source>${project.build.java.target}</source>
                         <target>${project.build.java.target}</target>
-                    </configuration>
-                </plugin>
+						<!-- We are building against Java 1.7 -->
+						<source>1.7</source>
+						<target>1.7</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
@@ -151,6 +155,10 @@
 	  <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
+					<!-- InTouch modification - skip gpg -->
+					<configuration>
+						<skip>true</skip>
+					</configuration>
                     <executions>
                         <execution>
                            <id>sign-artifacts</id>
