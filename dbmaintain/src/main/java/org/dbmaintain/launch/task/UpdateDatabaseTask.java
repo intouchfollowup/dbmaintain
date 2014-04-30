@@ -46,6 +46,7 @@ public class UpdateDatabaseTask extends DbMaintainDatabaseTask {
     protected Boolean useLastModificationDates;
     protected String scriptFileExtensions;
     protected String scriptParameterFile;
+    protected String baselineRevision;
 
 
     public UpdateDatabaseTask() {
@@ -72,6 +73,28 @@ public class UpdateDatabaseTask extends DbMaintainDatabaseTask {
     }
 
 
+    public UpdateDatabaseTask(List<DbMaintainDatabase> taskDatabases, String scriptLocations, String scriptEncoding, String postProcessingScriptDirectoryName, Boolean fromScratchEnabled, Boolean autoCreateDbMaintainScriptsTable, Boolean allowOutOfSequenceExecutionOfPatches, String qualifiers, String patchQualifiers, String includedQualifiers, String excludedQualifiers, Boolean cleanDb, Boolean disableConstraints, Boolean updateSequences, Boolean useLastModificationDates, String scriptFileExtensions, String scriptParameterFile, String baselineRevision) {
+        super(taskDatabases);
+        this.scriptLocations = scriptLocations;
+        this.scriptEncoding = scriptEncoding;
+        this.postProcessingScriptDirectoryName = postProcessingScriptDirectoryName;
+        this.fromScratchEnabled = fromScratchEnabled;
+        this.autoCreateDbMaintainScriptsTable = autoCreateDbMaintainScriptsTable;
+        this.allowOutOfSequenceExecutionOfPatches = allowOutOfSequenceExecutionOfPatches;
+        this.qualifiers = qualifiers;
+        this.patchQualifiers = patchQualifiers;
+        this.includedQualifiers = includedQualifiers;
+        this.excludedQualifiers = excludedQualifiers;
+        this.cleanDb = cleanDb;
+        this.disableConstraints = disableConstraints;
+        this.updateSequences = updateSequences;
+        this.useLastModificationDates = useLastModificationDates;
+        this.scriptFileExtensions = scriptFileExtensions;
+        this.scriptParameterFile = scriptParameterFile;
+        this.baselineRevision = baselineRevision;
+    }
+
+
     @Override
     protected void addTaskConfiguration(TaskConfiguration taskConfiguration) {
         taskConfiguration.addDatabaseConfigurations(databases);
@@ -91,6 +114,7 @@ public class UpdateDatabaseTask extends DbMaintainDatabaseTask {
         taskConfiguration.addConfigurationIfSet(PROPERTY_SCRIPT_FILE_EXTENSIONS, scriptFileExtensions);
         taskConfiguration.addConfigurationIfSet(PROPERTY_USESCRIPTFILELASTMODIFICATIONDATES, useLastModificationDates);
         taskConfiguration.addConfigurationIfSet(PROPERTY_SCRIPT_PARAMETER_FILE, scriptParameterFile);
+        taskConfiguration.addConfigurationIfSet(PROPERTY_BASELINE_REVISION, baselineRevision);
     }
 
     @Override
@@ -163,4 +187,9 @@ public class UpdateDatabaseTask extends DbMaintainDatabaseTask {
     public void setScriptParameterFile(String scriptParameterFile) {
         this.scriptParameterFile = scriptParameterFile;
     }
+
+	public void setBaselineRevision(String baselineRevision) {
+		this.baselineRevision = baselineRevision;
+	}
+    
 }
